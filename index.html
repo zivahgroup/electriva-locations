@@ -54,7 +54,7 @@
     .nav {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 12px 16px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -67,24 +67,22 @@
       gap: 10px;
     }
 
-    .logo-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #bbf7d0 0, #22c55e 35%, #166534 75%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 20px rgba(34, 197, 94, 0.55);
-      color: #022c22;
-      font-weight: 700;
-      font-size: 18px;
+    .brand-logo {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      .brand-logo {
+        height: 32px;
+      }
     }
 
     .logo-text-main {
       font-weight: 600;
       letter-spacing: 0.03em;
-      font-size: 17px;
+      font-size: 16px;
     }
 
     .logo-text-sub {
@@ -102,6 +100,7 @@
       background: rgba(15, 23, 42, 0.9);
       font-size: 11px;
       color: var(--text-muted);
+      white-space: nowrap;
     }
 
     main {
@@ -160,6 +159,7 @@
     h1 span {
       background: linear-gradient(to right, #bbf7d0, #4ade80, #22c55e);
       -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
     }
 
@@ -187,6 +187,7 @@
 
     .stats {
       margin-top: 8px;
+      margin-bottom: 10px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
@@ -211,7 +212,7 @@
     }
 
     .stations-list {
-      margin-top: 12px;
+      margin-top: 10px;
       border-radius: 14px;
       border: 1px solid rgba(148, 163, 184, 0.35);
       background: rgba(15, 23, 42, 0.95);
@@ -272,6 +273,7 @@
       gap: 6px;
       font-size: 10px;
       color: var(--text-muted);
+      align-items: center;
     }
 
     .chip {
@@ -284,6 +286,28 @@
       border-color: rgba(34, 197, 94, 0.75);
       color: #bbf7d0;
       background: rgba(22, 101, 52, 0.55);
+    }
+
+    .gmaps-link,
+    .popup-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.7);
+      font-size: 10px;
+      color: #bbf7d0;
+      text-decoration: none;
+      background: rgba(22, 101, 52, 0.5);
+      margin-top: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .gmaps-link:hover,
+    .popup-link:hover {
+      filter: brightness(1.08);
     }
 
     .map-panel {
@@ -372,14 +396,18 @@
 <body>
 <header>
   <nav class="nav">
-   <div class="logo">
-  <img src="https://electriva.in/wp-content/uploads/2022/07/LogoElectriva.png" class="brand-logo" alt="ElectriVa Logo">
-  <div>
-    <div class="logo-text-main">EV Charging Company</div>
-    <div class="logo-text-sub">Keep India Charged!</div>
-  </div>
-</div>
-
+    <div class="logo">
+      <img src="https://electriva.in/wp-content/uploads/2022/07/LogoElectriva.png"
+           class="brand-logo"
+           alt="ElectriVa Logo">
+      <div>
+        <div class="logo-text-main">EV Charging Company</div>
+        <div class="logo-text-sub">Keep India Charged!</div>
+      </div>
+    </div>
+    <div class="nav-pill">
+      Kolkata • Official ElectriVa charging locations
+    </div>
   </nav>
 </header>
 
@@ -392,13 +420,13 @@
           Your <span>EV charging network</span> in Kolkata.
         </h1>
         <p class="subtitle">
-          Every marker on the map is an official charging station from your network.
-          Users can browse the list or tap on a station to highlight it on the map.
+          Browse all official ElectriVa charging stations in the city.
+          Tap a station to focus the map or open turn-by-turn directions in Google Maps.
         </p>
 
         <div class="tag-row">
-          <div class="tag">📍 Fixed locations </div>
-          <div class="tag">🗺️ OpenStreetMap + Leaflet</div>
+          <div class="tag">📍 Fixed verified locations</div>
+          <div class="tag">📱 One tap to Google Maps</div>
         </div>
 
         <div class="stats">
@@ -408,7 +436,7 @@
           </div>
           <div class="stat-card">
             <div class="stat-label">Map status</div>
-            <div class="stat-value" id="statStatus">Loading...</div>
+            <div class="stat-value" id="statStatus">Loading…</div>
           </div>
         </div>
 
@@ -442,7 +470,7 @@
 </main>
 
 <footer>
-  Built with using OpenStreetMap &amp; Leaflet. No third-party charging APIs are used.
+  Built with OpenStreetMap &amp; Leaflet. Google Maps is used only for navigation links.
 </footer>
 
 <!-- Leaflet JS -->
@@ -453,25 +481,11 @@
 ></script>
 
 <script>
-  // ==========================================
-  // 1️⃣  EDIT THIS ARRAY WITH YOUR LOCATIONS
-  // ==========================================
-  // Example format:
-  // {
-  //   name: "Station Name",
-  //   address: "Short address / landmark",
-  //   city: "City",
-  //   state: "State",
-  //   lat: 22.5726,
-  //   lng: 88.3639,
-  //   connectors: "CCS2, Type 2 AC",
-  //   power: "60 kW"
-  // }
-
+  // 1️⃣ YOUR STATION DATA
   var stations = [
     {
-      name: "ElectriVa - Webel Tower 2 ",
-      address: "Tower 2, Tower 2, BN-9, BN-9, BN Block, Sector V, Bidhannagar, Kolkata, West Bengal 700091",
+      name: "ElectriVa - Webel Tower 2",
+      address: "Tower 2, BN-9, BN Block, Sector V, Bidhannagar, Kolkata, West Bengal 700091",
       city: "Kolkata",
       state: "West Bengal",
       lat: 22.580102,
@@ -491,19 +505,17 @@
     },
     {
       name: "ElectriVa Kolkata - Milan Mela Prangan",
-      address: "1st Floor, Multi Level Car Parking, Biswa Bangla Mela Prangan, 3, JBS Haldane Avenue EM Bypass, Park Circus, Kolkata, West Bengal 700046",
-      city: "Salt Lake",
+      address: "1st Floor, MLCP, Biswa Bangla Mela Prangan, 3, JBS Haldane Avenue EM Bypass, Park Circus, Kolkata, West Bengal 700046",
+      city: "Kolkata",
       state: "West Bengal",
       lat: 22.5458969,
       lng: 88.3966814,
       connectors: "CCS2, Type 2",
-      power: "60,30 kW"
+      power: "60, 30 kW"
     }
   ];
 
-  // ==========================================
-  // 2️⃣  MAP + UI LOGIC
-  // ==========================================
+  // 2️⃣ MAP + UI LOGIC
   var map;
   var markersLayer;
   var statTotal = document.getElementById("statTotal");
@@ -513,8 +525,7 @@
   var mapStatusLabel = document.getElementById("mapStatusLabel");
 
   function initMap() {
-    // Fallback center (India) in case there are no stations
-    var defaultCenter = [20.5937, 78.9629];
+    var defaultCenter = [20.5937, 78.9629]; // India
 
     map = L.map("map", {
       zoomControl: true,
@@ -531,10 +542,18 @@
     renderStations();
     fitMapToStations();
 
-    statTotal.textContent = stations.length.toString();
-    stationsCount.textContent = stations.length + (stations.length === 1 ? " station" : " stations");
-    statStatus.textContent = "Online";
-    mapStatusLabel.textContent = "Showing all official locations";
+    if (statTotal) {
+      statTotal.textContent = stations.length.toString();
+    }
+    if (stationsCount) {
+      stationsCount.textContent = stations.length + (stations.length === 1 ? " station" : " stations");
+    }
+    if (statStatus) {
+      statStatus.textContent = "Online";
+    }
+    if (mapStatusLabel) {
+      mapStatusLabel.textContent = "Showing all official locations";
+    }
   }
 
   function renderStations() {
@@ -550,6 +569,11 @@
     for (var i = 0; i < stations.length; i++) {
       (function(index) {
         var station = stations[index];
+
+        // Google Maps URL for directions
+        var mapsHref =
+          "https://www.google.com/maps/dir/?api=1&destination=" +
+          station.lat + "," + station.lng;
 
         // Add marker
         var marker = L.marker([station.lat, station.lng]).addTo(markersLayer);
@@ -570,7 +594,9 @@
         var popupHtml =
           "<strong>" + station.name + "</strong><br/>" +
           "<small>" + addrText + "</small>" +
-          (extraText ? "<br/><small>" + extraText + "</small>" : "");
+          (extraText ? "<br/><small>" + extraText + "</small>" : "") +
+          "<br/><a href='" + mapsHref +
+          "' target='_blank' rel='noopener' class='popup-link'>Open in Google Maps</a>";
 
         marker.bindPopup(popupHtml);
 
@@ -606,6 +632,15 @@
           chipPower.textContent = station.power;
           meta.appendChild(chipPower);
         }
+
+        // Google Maps link button in the list
+        var gLink = document.createElement("a");
+        gLink.className = "gmaps-link";
+        gLink.href = mapsHref;
+        gLink.target = "_blank";
+        gLink.rel = "noopener";
+        gLink.textContent = "Open in Google Maps";
+        meta.appendChild(gLink);
 
         item.appendChild(nameEl);
         item.appendChild(addrEl);
