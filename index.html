@@ -27,370 +27,55 @@
       --text-muted: #9ca3af;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      border-bottom: 1px solid var(--border-subtle);
-      backdrop-filter: blur(16px);
-      background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.7));
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-
-    .nav {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      height: 40px;
-      width: auto;
-      display: block;
-    }
-
-    @media (max-width: 480px) {
-      .brand-logo {
-        height: 32px;
-      }
-    }
-
-    .logo-text-main {
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      font-size: 16px;
-    }
-
-    .logo-text-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .nav-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 11px;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    main {
-      flex: 1;
-      max-width: 1120px;
-      margin: 18px auto 24px;
-      padding: 0 16px;
-      width: 100%;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .panel {
-      border-radius: 18px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      box-shadow:
-        0 24px 60px rgba(15, 23, 42, 0.85),
-        inset 0 0 0 1px rgba(15, 23, 42, 0.9);
-      padding: 16px 16px 18px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: -120px;
-      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 55%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .panel-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: clamp(22px, 2.8vw, 28px);
-      letter-spacing: 0.01em;
-    }
-
-    h1 span {
-      background: linear-gradient(to right, #bbf7d0, #4ade80, #22c55e);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .tag {
-      font-size: 11px;
-      padding: 5px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--text-muted);
-      background: rgba(15, 23, 42, 0.85);
-    }
-
-    .stats {
-      margin-top: 8px;
-      margin-bottom: 10px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .stat-card {
-      padding: 8px 9px;
-      border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-    }
-
-    .stat-value {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .stations-list {
-      margin-top: 10px;
-      border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.95);
-      max-height: 330px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .stations-header {
-      padding: 8px 11px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-      font-size: 11px;
-    }
-
-    .stations-count {
-      color: var(--text-muted);
-    }
-
-    .stations-scroll {
-      padding: 6px 6px 6px 8px;
-      overflow-y: auto;
-    }
-
-    .station-item {
-      padding: 7px 7px;
-      margin-bottom: 4px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: border-color 0.12s ease, background 0.12s ease, transform 0.07s ease;
-    }
-
-    .station-item:hover {
-      border-color: rgba(34, 197, 94, 0.8);
-      background: rgba(15, 23, 42, 1);
-      transform: translateY(-1px);
-    }
-
-    .station-name {
-      font-size: 12px;
-      font-weight: 500;
-      margin-bottom: 2px;
-    }
-
-    .station-address {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-    }
-
-    .station-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: 10px;
-      color: var(--text-muted);
-      align-items: center;
-    }
-
-    .chip {
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-    }
-
-    .chip-green {
-      border-color: rgba(34, 197, 94, 0.75);
-      color: #bbf7d0;
-      background: rgba(22, 101, 52, 0.55);
-    }
-
-    .gmaps-link,
-    .popup-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(34, 197, 94, 0.7);
-      font-size: 10px;
-      color: #bbf7d0;
-      text-decoration: none;
-      background: rgba(22, 101, 52, 0.5);
-      margin-top: 4px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .gmaps-link:hover,
-    .popup-link:hover {
-      filter: brightness(1.08);
-    }
-
-    .map-panel {
-      border-radius: 18px;
-      background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 55%), var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      box-shadow:
-        0 24px 60px rgba(15, 23, 42, 0.9),
-        inset 0 0 0 1px rgba(15, 23, 42, 0.9);
-      padding: 12px 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .map-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .map-title {
-      font-size: 13px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .map-pill {
-      font-size: 10px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-muted);
-    }
-
-    .map-status {
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
-    }
-
-    #map {
-      width: 100%;
-      height: 380px;
-      border-radius: 14px;
-      border: 1px solid rgba(30, 64, 175, 0.9);
-      overflow: hidden;
-    }
-
-    .leaflet-control-attribution {
-      font-size: 9px !important;
-    }
-
-    footer {
-      border-top: 1px solid rgba(15, 23, 42, 0.95);
-      padding: 10px 16px 14px;
-      text-align: center;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    footer a {
-      color: #4ade80;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+    header { border-bottom: 1px solid var(--border-subtle); backdrop-filter: blur(16px); background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.7)); position: sticky; top: 0; z-index: 50; }
+    .nav { max-width: 1120px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .brand-logo { height: 40px; width: auto; display: block; }
+    @media (max-width: 480px) { .brand-logo { height: 32px; } }
+    .logo-text-main { font-weight: 600; letter-spacing: 0.03em; font-size: 16px; }
+    .logo-text-sub { font-size: 11px; color: var(--text-muted); }
+    .nav-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(34, 197, 94, 0.4); background: rgba(15, 23, 42, 0.9); font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+    main { flex: 1; max-width: 1120px; margin: 18px auto 24px; padding: 0 16px; width: 100%; }
+    .layout { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 18px; align-items: stretch; }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+    .panel { border-radius: 18px; background: var(--bg-card); border: 1px solid var(--border-subtle); box-shadow: 0 24px 60px rgba(15, 23, 42, 0.85), inset 0 0 0 1px rgba(15, 23, 42, 0.9); padding: 16px 16px 18px; position: relative; overflow: hidden; }
+    .panel::before { content: ""; position: absolute; inset: -120px; background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 55%); opacity: 0.7; pointer-events: none; }
+    .panel-inner { position: relative; z-index: 1; }
+    h1 { margin: 0 0 8px; font-size: clamp(22px, 2.8vw, 28px); letter-spacing: 0.01em; }
+    h1 span { background: linear-gradient(to right, #bbf7d0, #4ade80, #22c55e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .tag { font-size: 11px; padding: 5px 9px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.5); color: var(--text-muted); background: rgba(15, 23, 42, 0.85); }
+    .stats { margin-top: 8px; margin-bottom: 10px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .stat-card { padding: 8px 9px; border-radius: 14px; border: 1px solid rgba(148, 163, 184, 0.3); background: rgba(15, 23, 42, 0.9); }
+    .stat-label { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+    .stat-value { font-size: 14px; font-weight: 600; }
+    .stations-list { margin-top: 10px; border-radius: 14px; border: 1px solid rgba(148, 163, 184, 0.35); background: rgba(15, 23, 42, 0.95); max-height: 330px; display: flex; flex-direction: column; overflow: hidden; }
+    .stations-header { padding: 8px 11px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(148, 163, 184, 0.35); font-size: 11px; }
+    .stations-count { color: var(--text-muted); }
+    .stations-scroll { padding: 6px 6px 6px 8px; overflow-y: auto; }
+    .station-item { padding: 7px 7px; margin-bottom: 4px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; transition: border-color 0.12s ease, background 0.12s ease, transform 0.07s ease; }
+    .station-item:hover { border-color: rgba(34, 197, 94, 0.8); background: rgba(15, 23, 42, 1); transform: translateY(-1px); }
+    .station-name { font-size: 12px; font-weight: 500; margin-bottom: 2px; }
+    .station-address { font-size: 11px; color: var(--text-muted); margin-bottom: 2px; }
+    .station-meta { display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px; color: var(--text-muted); align-items: center; }
+    .chip { padding: 2px 6px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.45); }
+    .chip-green { border-color: rgba(34, 197, 94, 0.75); color: #bbf7d0; background: rgba(22, 101, 52, 0.55); }
+    .gmaps-link, .popup-link { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(34, 197, 94, 0.7); font-size: 10px; color: #bbf7d0; text-decoration: none; background: rgba(22, 101, 52, 0.5); margin-top: 4px; cursor: pointer; white-space: nowrap; }
+    .gmaps-link:hover, .popup-link:hover { filter: brightness(1.08); }
+    .map-panel { border-radius: 18px; background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 55%), var(--bg-card); border: 1px solid var(--border-subtle); box-shadow: 0 24px 60px rgba(15, 23, 42, 0.9), inset 0 0 0 1px rgba(15, 23, 42, 0.9); padding: 12px 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+    .map-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+    .map-title { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .map-pill { font-size: 10px; padding: 3px 7px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.4); color: var(--text-muted); }
+    .map-status { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 999px; background: #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.9); }
+    #map { width: 100%; height: 380px; border-radius: 14px; border: 1px solid rgba(30, 64, 175, 0.9); overflow: hidden; }
+    .leaflet-control-attribution { font-size: 9px !important; }
+    footer { border-top: 1px solid rgba(15, 23, 42, 0.95); padding: 10px 16px 14px; text-align: center; font-size: 11px; color: var(--text-muted); }
+    footer a { color: #4ade80; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -413,27 +98,21 @@
 
 <main>
   <section class="layout">
-    <!-- LEFT: Station list / info -->
     <div class="panel">
       <div class="panel-inner">
         <h1>
           Your <span>EV charging network</span> in Kolkata.
         </h1>
-        
-
         <div class="stations-list">
           <div class="stations-header">
             <div>Charging stations</div>
             <div class="stations-count" id="stationsCount">-</div>
           </div>
-          <div class="stations-scroll" id="stationsContainer">
-            <!-- Filled by JS -->
-          </div>
+          <div class="stations-scroll" id="stationsContainer"></div>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT: Map -->
     <div class="map-panel">
       <div class="map-header">
         <div class="map-title">
@@ -454,7 +133,6 @@
   Built with OpenStreetMap  
 </footer>
 
-<!-- Leaflet JS -->
 <script
   src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
@@ -462,197 +140,89 @@
 ></script>
 
 <script>
-  // 1️⃣ YOUR STATION DATA
-  var stations = [
-    {
-      name: "ElectriVa - Webel Tower 2",
-      address: "Tower 2, BN-9, BN Block, Sector V, Bidhannagar, Kolkata, West Bengal 700091",
-      city: "Kolkata",
-      state: "West Bengal",
-      lat: 22.580102,
-      lng: 88.435543,
-      connectors: "CCS2, Type 2",
-      power: "30 kW"
-    },
-    {
-      name: "ElectriVa Kolkata - Somponno, Alipore",
-      address: "3rd Floor, Multi Level Car Parking, 34A, Alipore, Kolkata, West Bengal 700027",
-      city: "Kolkata",
-      state: "West Bengal",
-      lat: 22.533499,
-      lng: 88.335469,
-      connectors: "CCS2",
-      power: "60 kW"
-    },
-    {
-      name: "ElectriVa Kolkata - Milan Mela Prangan",
-      address: "1st Floor, MLCP, Biswa Bangla Mela Prangan, 3, JBS Haldane Avenue EM Bypass, Park Circus, Kolkata, West Bengal 700046",
-      city: "Kolkata",
-      state: "West Bengal",
-      lat: 22.5458969,
-      lng: 88.3966814,
-      connectors: "CCS2, Type 2",
-      power: "60, 30 kW"
-    }
-  ];
-
-  // 2️⃣ MAP + UI LOGIC
-  var map;
-  var markersLayer;
-  var statTotal = document.getElementById("statTotal");
-  var statStatus = document.getElementById("statStatus");
-  var stationsCount = document.getElementById("stationsCount");
-  var stationsContainer = document.getElementById("stationsContainer");
-  var mapStatusLabel = document.getElementById("mapStatusLabel");
-
-  function initMap() {
-    var defaultCenter = [20.5937, 78.9629]; // India
-
-    map = L.map("map", {
-      zoomControl: true,
-      attributionControl: true
-    }).setView(defaultCenter, 5);
-
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: "&copy; OpenStreetMap contributors"
-    }).addTo(map);
-
-    markersLayer = L.layerGroup().addTo(map);
-
-    renderStations();
-    fitMapToStations();
-
-    if (statTotal) {
-      statTotal.textContent = stations.length.toString();
-    }
-    if (stationsCount) {
-      stationsCount.textContent = stations.length + (stations.length === 1 ? " station" : " stations");
-    }
-    if (statStatus) {
-      statStatus.textContent = "Online";
-    }
-    if (mapStatusLabel) {
-      mapStatusLabel.textContent = "Showing all official locations";
-    }
+var stations = [
+  {
+    name: "ElectriVa - Webel Tower 2",
+    address: "Tower 2, BN-9, BN Block, Sector V, Bidhannagar, Kolkata, West Bengal 700091",
+    city: "Kolkata",
+    state: "West Bengal",
+    lat: 22.580102,
+    lng: 88.435543,
+    connectors: "CCS2, Type 2",
+    power: "30 kW"
+  },
+  {
+    name: "ElectriVa Kolkata - Somponno, Alipore",
+    address: "3rd Floor, Multi Level Car Parking, 34A, Alipore, Kolkata, West Bengal 700027",
+    city: "Kolkata",
+    state: "West Bengal",
+    lat: 22.533499,
+    lng: 88.335469,
+    connectors: "CCS2",
+    power: "60 kW"
+  },
+  {
+    name: "ElectriVa Kolkata - Milan Mela Prangan",
+    address: "1st Floor, MLCP, Biswa Bangla Mela Prangan, 3, JBS Haldane Avenue EM Bypass, Park Circus, Kolkata, West Bengal 700046",
+    city: "Kolkata",
+    state: "West Bengal",
+    lat: 22.5458969,
+    lng: 88.3966814,
+    connectors: "CCS2, Type 2",
+    power: "60, 30 kW"
+  },
+  {
+    name: "ElectriVa - Sector V Metro",
+    address: "Sector V Metro Station, Sector V, Bidhannagar, West Bengal 700091",
+    city: "Kolkata",
+    state: "West Bengal",
+    lat: 22.58101048,
+    lng: 88.42904782,
+    connectors: "CCS2,Type 2, AC001",
+    power: "60 kW, 30 kW, 15 kW, 3.3kW"
   }
+];
+
+document.addEventListener("DOMContentLoaded", function() {
+  var map = L.map("map").setView([20.5937, 78.9629], 5);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: "&copy; OpenStreetMap contributors" }).addTo(map);
+  var markersLayer = L.layerGroup().addTo(map);
+  var stationsContainer = document.getElementById("stationsContainer");
+  var stationsCount = document.getElementById("stationsCount");
+  var mapStatusLabel = document.getElementById("mapStatusLabel");
 
   function renderStations() {
     markersLayer.clearLayers();
     stationsContainer.innerHTML = "";
-
-    if (!stations.length) {
-      stationsContainer.innerHTML =
-        '<div style="font-size:11px;color:#9ca3af;">No stations have been configured yet.</div>';
-      return;
-    }
-
     for (var i = 0; i < stations.length; i++) {
-      (function(index) {
+      (function(index){
         var station = stations[index];
-
-        // Google Maps URL for directions
-        var mapsHref =
-          "https://www.google.com/maps/dir/?api=1&destination=" +
-          station.lat + "," + station.lng;
-
-        // Add marker
+        var mapsHref = "https://www.google.com/maps/dir/?api=1&destination=" + station.lat + "," + station.lng;
         var marker = L.marker([station.lat, station.lng]).addTo(markersLayer);
-
-        var addrParts = [];
-        if (station.address) addrParts.push(station.address);
-        var cityState = [];
-        if (station.city) cityState.push(station.city);
-        if (station.state) cityState.push(station.state);
-        if (cityState.length) addrParts.push(cityState.join(", "));
-        var addrText = addrParts.join("<br/>");
-
-        var extra = [];
-        if (station.connectors) extra.push(station.connectors);
-        if (station.power) extra.push(station.power);
-        var extraText = extra.join(" • ");
-
-        var popupHtml =
-          "<strong>" + station.name + "</strong><br/>" +
-          "<small>" + addrText + "</small>" +
-          (extraText ? "<br/><small>" + extraText + "</small>" : "") +
-          "<br/><a href='" + mapsHref +
-          "' target='_blank' rel='noopener' class='popup-link'>Open in Google Maps</a>";
-
-        marker.bindPopup(popupHtml);
-
-        // Create list item
-        var item = document.createElement("div");
-        item.className = "station-item";
-        item.dataset.index = index;
-
-        var nameEl = document.createElement("div");
-        nameEl.className = "station-name";
-        nameEl.textContent = station.name;
-
-        var addrEl = document.createElement("div");
-        addrEl.className = "station-address";
-        var addrPartsPlain = [];
-        if (station.address) addrPartsPlain.push(station.address);
-        if (cityState.length) addrPartsPlain.push(cityState.join(", "));
-        addrEl.textContent = addrPartsPlain.join(" • ");
-
-        var meta = document.createElement("div");
-        meta.className = "station-meta";
-
-        if (station.connectors) {
-          var chipConn = document.createElement("span");
-          chipConn.className = "chip chip-green";
-          chipConn.textContent = station.connectors;
-          meta.appendChild(chipConn);
-        }
-
-        if (station.power) {
-          var chipPower = document.createElement("span");
-          chipPower.className = "chip";
-          chipPower.textContent = station.power;
-          meta.appendChild(chipPower);
-        }
-
-        // Google Maps link button in the list
-        var gLink = document.createElement("a");
-        gLink.className = "gmaps-link";
-        gLink.href = mapsHref;
-        gLink.target = "_blank";
-        gLink.rel = "noopener";
-        gLink.textContent = "Open in Google Maps";
-        meta.appendChild(gLink);
-
-        item.appendChild(nameEl);
-        item.appendChild(addrEl);
-        item.appendChild(meta);
-
-        // On click, center map on this station and open popup
-        item.addEventListener("click", function () {
-          map.setView([station.lat, station.lng], 16);
-          marker.openPopup();
-        });
-
+        var addrText = [station.address, station.city + ", " + station.state].join("<br/>");
+        var extraText = [station.connectors, station.power].join(" • ");
+        marker.bindPopup("<strong>" + station.name + "</strong><br/><small>" + addrText + "</small><br/><small>" + extraText + "</small><br/><a href='" + mapsHref + "' target='_blank' rel='noopener' class='popup-link'>Open in Google Maps</a>");
+        
+        var item = document.createElement("div"); item.className = "station-item"; item.dataset.index = index;
+        var nameEl = document.createElement("div"); nameEl.className = "station-name"; nameEl.textContent = station.name;
+        var addrEl = document.createElement("div"); addrEl.className = "station-address"; addrEl.textContent = station.address + " • " + station.city + ", " + station.state;
+        var meta = document.createElement("div"); meta.className = "station-meta";
+        var chipConn = document.createElement("span"); chipConn.className = "chip chip-green"; chipConn.textContent = station.connectors; meta.appendChild(chipConn);
+        var chipPower = document.createElement("span"); chipPower.className = "chip"; chipPower.textContent = station.power; meta.appendChild(chipPower);
+        var gLink = document.createElement("a"); gLink.className = "gmaps-link"; gLink.href = mapsHref; gLink.target = "_blank"; gLink.rel = "noopener"; gLink.textContent = "Open in Google Maps"; meta.appendChild(gLink);
+        item.appendChild(nameEl); item.appendChild(addrEl); item.appendChild(meta);
+        item.addEventListener("click", function(){ map.setView([station.lat, station.lng], 16); marker.openPopup(); });
         stationsContainer.appendChild(item);
       })(i);
     }
+    if (stationsCount) stationsCount.textContent = stations.length + (stations.length === 1 ? " station" : " stations");
+    if (mapStatusLabel) mapStatusLabel.textContent = "Showing all official locations";
   }
 
-  function fitMapToStations() {
-    if (!stations.length) return;
-
-    var bounds = [];
-    for (var i = 0; i < stations.length; i++) {
-      bounds.push(L.latLng(stations[i].lat, stations[i].lng));
-    }
-
-    if (bounds.length) {
-      var latLngBounds = L.latLngBounds(bounds);
-      map.fitBounds(latLngBounds.pad(0.15));
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", initMap);
+  renderStations();
+  var bounds = stations.map(s => L.latLng(s.lat, s.lng));
+  if(bounds.length) map.fitBounds(L.latLngBounds(bounds).pad(0.15));
+});
 </script>
 </body>
 </html>
